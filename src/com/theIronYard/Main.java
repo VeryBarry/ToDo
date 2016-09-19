@@ -14,12 +14,18 @@ public class Main {
             System.out.println("Enter Name: ");
             String name = scanner.nextLine();
 
+            ArrayList<Item> items = users.get(name);
+            if (items == null) {
+                items = new ArrayList<>();
+                users.put(name, items);
+            }
 
-
-            while (true) {
+            boolean isLoggedIn = true;
+            while (isLoggedIn) {
                 System.out.println("1. Create to-do item");
                 System.out.println("2. Check/Uncheck to-do item");
                 System.out.println("3. List all to-do items");
+                System.out.println("4. Logout");
 
                 String option = scanner.nextLine();
 
@@ -46,6 +52,9 @@ public class Main {
                             }
                             System.out.println(checkbox + " " + num + ". " + item3.text);
                         }
+                        break;
+                    case "4":
+                        isLoggedIn = false;
                         break;
                     default:
                         System.out.println("Invalid option.");
